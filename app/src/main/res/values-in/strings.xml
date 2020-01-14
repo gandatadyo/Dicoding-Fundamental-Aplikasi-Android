@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Dicoding Movie TV</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="change_language_settings">Pengaturan Bahasa</string>
+    <string name="remove">Hapus</string>
+    <string name="favorite">Simpan</string>
+    <string name="tab_text_1">Film</string>
+    <string name="tab_text_2">Televisi</string>
+    <string name="tab_text_3">Di Simpan</string>
+    <string name="language">id</string>
+
+    <string name="datadelete">data telah dihapus</string>
+    <string name="faileddelete">gagal dihapus</string>
+    <string name="successfulysaved">berhasil disimpan</string>
+    <string name="failedtosaved">gagal disimpan</string>
+    <string name="dataalreadyexist">data sudah ada</string>
+    <string name="somethingwrong">terjadi kesalahan</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
