@@ -46,7 +46,7 @@ class RestAPITVShow: ViewModel() {
                 0,
                 list.getJSONObject(i).getString("original_name"),
                 list.getJSONObject(i).getString("overview"),
-                "https://image.tmdb.org/t/p/w92${list.getJSONObject(i).getString("poster_path")}"
+                list.getJSONObject(i).getString("poster_path")
             )
             listItems.add(item)
         }

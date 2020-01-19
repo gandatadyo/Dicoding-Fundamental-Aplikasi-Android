@@ -1,20 +1,21 @@
-package com.example.dicodingmovietv
+package com.example.dicodingmovietv.Activity
 
-import android.appwidget.AppWidgetManager
-import android.content.ComponentName
+import android.app.PendingIntent
 import android.content.ContentValues
-import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.dicodingmovietv.Database.DatabaseContract
 import com.example.dicodingmovietv.Database.FavoriteHelper
 import com.example.dicodingmovietv.Model.ParcelableData
+import com.example.dicodingmovietv.R
+import com.example.dicodingmovietv.StackWidgetService
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail.*
+
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var favHelper: FavoriteHelper
@@ -39,7 +40,8 @@ class DetailActivity : AppCompatActivity() {
         iddata = myData.id.toString()
         imgurl = myData.img.toString()
         titledata = myData.name.toString()
-        Picasso.get().load(myData.img).into(imgDetail)
+        val imgurllarge = "https://image.tmdb.org/t/p/w500/${imgurl}"
+        Picasso.get().load(imgurllarge).into(imgDetail)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -63,14 +65,12 @@ class DetailActivity : AppCompatActivity() {
             }
             R.id.action_favorite ->{
                 AddFavorite()
-                SycnDataWidget(this)
                 finish()
                 return true
             }
             R.id.action_remove ->{
                 finish()
                 RemoveFavorite()
-                SycnDataWidget(this)
                 return true
             }
             else -> super.onOptionsItemSelected(item)
@@ -90,6 +90,7 @@ class DetailActivity : AppCompatActivity() {
             val sresult = favHelper.insertTv(values,this)
             Toast.makeText(this, sresult, Toast.LENGTH_SHORT).show()
         }
+        SyncDataWidget()
     }
 
     private fun RemoveFavorite() {
@@ -100,6 +101,7 @@ class DetailActivity : AppCompatActivity() {
             if (result> 0)  Toast.makeText(this, getString(R.string.datadelete), Toast.LENGTH_SHORT).show()
             else Toast.makeText(this, getString(R.string.faileddelete), Toast.LENGTH_SHORT).show()
         }
+        SyncDataWidget()
     }
 
     private fun CheckData():Boolean{
@@ -109,11 +111,9 @@ class DetailActivity : AppCompatActivity() {
         return result
     }
 
-    fun SycnDataWidget(context: Context){
-        val intent = Intent(context, ImagesBannerWidget::class.java)
-        intent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
-        val ids = AppWidgetManager.getInstance(context).getAppWidgetIds(ComponentName(context,ImagesBannerWidget::class.java!!))
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
-        context.sendBroadcast(intent)
+    private fun SyncDataWidget(){
+        intent = Intent("android.appwidget.action.APPWIDGET_UPDATE")
+        intent.putExtra("WIDGET_RELOAD","widgetsreload")
+        sendBroadcast(intent)
     }
 }

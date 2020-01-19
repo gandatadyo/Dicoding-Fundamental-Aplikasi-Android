@@ -42,7 +42,8 @@ class AdapterListMovie internal constructor(private val context: Context) : Base
         internal fun bind(movie: ParcelableData) {
             txtName.text = movie.name
             txtDescription.text = movie.desc
-            Picasso.get().load(movie.img).into(imgPhoto)
+            val imgurlsmall = "https://image.tmdb.org/t/p/w92/${movie.img}"
+            Picasso.get().load(imgurlsmall).into(imgPhoto)
         }
     }
 

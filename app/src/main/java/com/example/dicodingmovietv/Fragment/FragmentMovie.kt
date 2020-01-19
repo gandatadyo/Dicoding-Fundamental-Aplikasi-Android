@@ -14,9 +14,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.dicodingmovietv.Adapter.AdapterListMovie
-import com.example.dicodingmovietv.DetailActivity
+import com.example.dicodingmovietv.Activity.DetailActivity
 import com.example.dicodingmovietv.Model.ParcelableData
-import com.example.dicodingmovietv.ReminderActivity
+import com.example.dicodingmovietv.Activity.ReminderActivity
 import com.example.dicodingmovietv.RestApi.RestAPIMovie
 import com.example.dicodingmovietv.R
 import kotlinx.android.synthetic.main.fragment_movie.view.*

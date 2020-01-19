@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -17,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dicodingmovietv.Adapter.AdapterRecyclerTVShow
 import com.example.dicodingmovietv.Model.ParcelableData
 import com.example.dicodingmovietv.R
-import com.example.dicodingmovietv.ReminderActivity
+import com.example.dicodingmovietv.Activity.ReminderActivity
 import com.example.dicodingmovietv.RestApi.RestAPITVShow
 import kotlinx.android.synthetic.main.fragment_tvshow.view.*
 

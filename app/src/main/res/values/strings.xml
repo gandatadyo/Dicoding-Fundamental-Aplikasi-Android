@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Dicoding Movie TV</string>
+    <string name="app_name">Dicoding Media</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="change_language_settings">Change Language Settings</string>
     <string name="remove">Remove</string>
@@ -17,22 +17,7 @@
     <string name="somethingwrong">something wrong</string>
     <string name="search" translatable="false">Search</string>
 
-    <!-- widget-->
-    <string name="appwidget_text" translatable="false">STAR WARS BANNER</string>
-    <string name="empty_text" translatable="false">NO DATA</string>
-    <string name="add_widget" translatable="false">Add widget</string>
-
-
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="content_title">New Movie Release</string>
-    <string name="content_text">List Movie</string>
-    <string name="subtext">Information</string>
-    <string name="one_time_alarm">One Time Alarm</string>
-    <string name="alarm_date">Tanggal Alarm</string>
-    <string name="set_one_time_alarm">Set One Time Alarm</string>
-    <string name="alarm_message">Pesan Alarm</string>
-    <string name="repeating_alarm">Repeating Alarm</string>
-    <string name="set_repeating_alarm">Set Repeating Alarm</string>
-    <string name="cancel_alarm">Batalkan Alarm</string>
-    <string name="alarm_time">Waktu Alarm</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>

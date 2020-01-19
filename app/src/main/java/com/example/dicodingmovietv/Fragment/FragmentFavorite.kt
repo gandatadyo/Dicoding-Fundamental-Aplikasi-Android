@@ -6,11 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.viewpager.widget.ViewPager
-import com.example.dicodingmovietv.PageAdapter.PageAdapterFavorite
+import com.example.dicodingmovietv.FragmentAdapter.PageAdapterFavorite
 
 import com.example.dicodingmovietv.R
-import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.fragment_favorite.view.*
 
 class FragmentFavorite : Fragment() {

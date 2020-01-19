@@ -1,4 +1,4 @@
-package com.example.dicodingmovietv.PageAdapter
+package com.example.dicodingmovietv.FragmentAdapter
 
 import android.content.Context
 import androidx.annotation.Nullable
