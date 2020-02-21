@@ -1,6 +1,5 @@
 package com.example.dicodingmovietv.Activity
 
-import android.app.PendingIntent
 import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
@@ -10,9 +9,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dicodingmovietv.Database.DatabaseContract
 import com.example.dicodingmovietv.Database.FavoriteHelper
+import com.example.dicodingmovietv.Widget.ImageBannerWidget
 import com.example.dicodingmovietv.Model.ParcelableData
 import com.example.dicodingmovietv.R
-import com.example.dicodingmovietv.StackWidgetService
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detail.*
 
@@ -112,7 +111,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun SyncDataWidget(){
-        intent = Intent("android.appwidget.action.APPWIDGET_UPDATE")
+        intent = Intent(this,ImageBannerWidget::class.java)
         intent.putExtra("WIDGET_RELOAD","widgetsreload")
         sendBroadcast(intent)
     }

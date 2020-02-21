@@ -1,14 +1,12 @@
-package com.example.dicodingmovietv
+package com.example.dicodingmovietv.Widget
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
-import androidx.core.os.bundleOf
 import com.example.dicodingmovietv.Database.DatabaseContract
 import com.example.dicodingmovietv.Database.FavoriteHelper
+import com.example.dicodingmovietv.R
 import com.squareup.picasso.Picasso
 
 internal class StackRemoteViewsFactory(private val mContext: Context) : RemoteViewsService.RemoteViewsFactory {
@@ -22,21 +20,25 @@ internal class StackRemoteViewsFactory(private val mContext: Context) : RemoteVi
         val cursor = favHelper.queryAllMovie()
 
         mWidgetItemsUrl.clear()
-        cursor.moveToFirst()
-        for (x in 0 until cursor.count) {
-            mWidgetItemsUrl.add( cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.FavoriteColumns.IMG)))
-            cursor.moveToNext()
+        if(cursor.count>0) {
+            cursor.moveToFirst()
+            for (x in 0 until cursor.count) {
+                mWidgetItemsUrl.add(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseContract.FavoriteColumns.IMG)))
+                cursor.moveToNext()
+            }
         }
     }
 
     override fun getViewAt(position: Int): RemoteViews {
-        val rv = RemoteViews(mContext.packageName, R.layout.widget_item_views)
+        val rv = RemoteViews(mContext.packageName,R.layout.widget_item_views)
 
-        val bitmap: Bitmap
-        val imglarge = "https://image.tmdb.org/t/p/w500/${mWidgetItemsUrl[position]}"
-        bitmap = Picasso.get().load(imglarge).get()
+        if(mWidgetItemsUrl.size>0) {
+            val bitmap: Bitmap
+            val imglarge = "https://image.tmdb.org/t/p/w500/${mWidgetItemsUrl[position]}"
+            bitmap = Picasso.get().load(imglarge).get()
 
-        rv.setImageViewBitmap(R.id.img_widget, bitmap)
+            rv.setImageViewBitmap(R.id.img_widget, bitmap)
+        }
         return rv
     }
 

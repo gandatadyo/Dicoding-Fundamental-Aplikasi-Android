@@ -18,4 +18,8 @@
     <string name="somethingwrong">terjadi kesalahan</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="captiondailyreminder">Pengingat Harian</string>
+    <string name="captionreleasereminder">Pengingat Movie Terbaru</string>
+    <string name="messagedailyreminder">Selamat Pagi, Waktunya cek film favorit mu</string>
+    <string name="appwidget_text">Widget Film favorit</string>
 </resources>

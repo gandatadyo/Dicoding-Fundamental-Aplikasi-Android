@@ -5,6 +5,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <permission android:name="com.example.dicodingmovietv.READ_DATABASE" android:protectionLevel="normal" />
+    <permission android:name="com.example.dicodingmovietv.WRITE_DATABASE" android:protectionLevel="normal" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/popcorn"
@@ -13,7 +16,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <receiver android:name=".ImageBannerWidget">
+        <provider
+            android:name=".DataFavoritProvider"
+            android:authorities="com.example.dicodingmovietv"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver android:name=".Widget.ImageBannerWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -22,8 +31,9 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/image_banner_widget_info" />
         </receiver>
+
         <service
-            android:name=".StackWidgetService"
+            android:name=".Widget.StackWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <activity android:name=".Activity.ReminderActivity" />

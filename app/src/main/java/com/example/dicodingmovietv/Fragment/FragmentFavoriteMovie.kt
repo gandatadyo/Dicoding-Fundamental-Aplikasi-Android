@@ -2,21 +2,21 @@ package com.example.dicodingmovietv.Fragment
 
 
 import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dicodingmovietv.Adapter.AdapterRecyclerMovieFav
+import com.example.dicodingmovietv.DataFavoritProvider
 import com.example.dicodingmovietv.Database.DatabaseContract
 import com.example.dicodingmovietv.Database.FavoriteHelper
 import com.example.dicodingmovietv.Model.ParcelableData
 
 import com.example.dicodingmovietv.R
 import kotlinx.android.synthetic.main.fragment_fragment_favorite_movie.view.*
-import kotlinx.android.synthetic.main.fragment_movie.view.*
 
 class FragmentFavoriteMovie : Fragment() {
     private var dataTV = arrayListOf<ParcelableData>()
@@ -54,8 +54,16 @@ class FragmentFavoriteMovie : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        val cursor = favHelper.queryAllMovie()
-        mapCursorToArrayList(cursor)
+//        val cursor = favHelper.queryAllMovie()
+//        mapCursorToArrayList(cursor)
+//        cardViewHeroAdapter.notifyDataSetChanged()
+        GetData()
+    }
+
+    private fun GetData(){
+        val CONTENT_URI: Uri = Uri.Builder().scheme("content").authority("com.example.dicodingmovietv").appendPath(DataFavoritProvider.TABLE_NAME).build()
+        val notesCursor = requireContext().contentResolver?.query(CONTENT_URI, null, null, null, null) as Cursor
+        mapCursorToArrayList(notesCursor)
         cardViewHeroAdapter.notifyDataSetChanged()
     }
 }

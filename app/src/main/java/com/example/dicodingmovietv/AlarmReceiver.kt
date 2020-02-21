@@ -39,11 +39,10 @@ class AlarmReceiver: BroadcastReceiver() {
     private fun ShowAlarmNotification(context: Context, message: String, notifId: Int) {
         val CHANNEL_ID = "Channel_1"
         val CHANNEL_NAME = "AlarmManager channel"
+
         val notificationManagerCompat = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val builder = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.ic_access_time_black)
-            .setContentTitle("Alaram")
             .setContentText(message)
             .setColor(ContextCompat.getColor(context, android.R.color.transparent))
             .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
@@ -93,27 +92,20 @@ class AlarmReceiver: BroadcastReceiver() {
                 .setContentText(message)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
         }
-//        val resultIntent = Intent(context, MainActivity::class.java)
-//        val stackBuilder = TaskStackBuilder.create(context)
-//        stackBuilder.addParentStack(MainActivity::class.java)
-//        stackBuilder.addNextIntent(resultIntent)
-//        val resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT)
-//        mBuilder?.setContentIntent(resultPendingIntent)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "\"com.example.dicodingmovietv\""
-            val descriptionText = "Hallo this is message from menu notification"
             val importance = NotificationManager.IMPORTANCE_DEFAULT
             val channel = NotificationChannel(CHANNEL_ID, name, importance).apply {
-                description = descriptionText
+                description = message
             }
             val notificationManager: NotificationManager =context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
         if (mBuilder != null) {
-            with(context?.let { NotificationManagerCompat.from(it) }) {
+            with(context.let { NotificationManagerCompat.from(it) }) {
                 val notificationId = notifId
-                this?.notify(notificationId, mBuilder.build())
+                this.notify(notificationId, mBuilder.build())
             }
         }
     }

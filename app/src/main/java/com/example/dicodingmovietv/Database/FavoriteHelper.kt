@@ -2,7 +2,6 @@ package com.example.dicodingmovietv.Database
 
 import android.content.ContentValues
 import android.content.Context
-import android.content.res.Resources
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
@@ -48,6 +47,7 @@ class FavoriteHelper (context: Context) {
     fun queryAllMovie(): Cursor {
         return database.query(DATABASE_TABLEMovie,null,null,null,null,null,"$_ID ASC",null)
     }
+
     fun queryAllTv(): Cursor {
         return database.query(DATABASE_TABLETV,null,null,null,null,null,"$_ID ASC",null)
     }
@@ -86,8 +86,25 @@ class FavoriteHelper (context: Context) {
         return database.delete(DATABASE_TABLEMovie, "$TITLE = '$title'", null)
     }
 
-
     fun deleteByIdTv(title: String): Int {
         return database.delete(DATABASE_TABLETV, "$TITLE = '$title'", null)
+    }
+
+
+    // for content provider (using table movie)
+    fun queryAll(): Cursor {
+        return database.query(DATABASE_TABLEMovie,null,null,null,null,null,"$_ID DESC",null)
+    }
+    fun queryById(id: String): Cursor {
+        return database.query(DATABASE_TABLEMovie, null, "$_ID = ?", arrayOf(id), null, null, null, null)
+    }
+    fun insert(values: ContentValues?): Long {
+        return database.insert(DATABASE_TABLEMovie, null, values)
+    }
+    fun update(id: String, values: ContentValues?): Int {
+        return database.update(DATABASE_TABLEMovie, values, "$_ID = ?", arrayOf(id))
+    }
+    fun deleteById(id: String): Int {
+        return database.delete(DATABASE_TABLEMovie, "$_ID = '$id'", null)
     }
 }
